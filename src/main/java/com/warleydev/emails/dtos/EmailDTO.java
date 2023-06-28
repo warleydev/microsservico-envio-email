@@ -1,6 +1,5 @@
 package com.warleydev.emails.dtos;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -24,5 +23,13 @@ public class EmailDTO {
 
     @NotBlank
     private String text;
+
+    public EmailDTO(com.warleydev.emails.entities.Email entity){
+        ownerRef = entity.getOwnerRef();
+        emailFrom = entity.getEmailFrom();
+        emailTo = entity.getEmailTo();
+        subject = entity.getSubject();
+        text = entity.getText();
+    }
 
 }

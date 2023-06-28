@@ -38,5 +38,9 @@ public class EmailService {
         finally {
             return emailRepository.save(entity);
         }
+
+    }
+    public Email getEmailById(Long id){
+        return emailRepository.findById(id).get();
     }
 }

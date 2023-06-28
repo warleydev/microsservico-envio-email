@@ -8,11 +8,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/emails")
 public class EmailController {
 
     @Autowired
@@ -24,6 +23,12 @@ public class EmailController {
         BeanUtils.copyProperties(emailDTO, entity);
         emailService.sendEmail(entity);
         return new ResponseEntity<>(entity, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<EmailDTO> getEmailById(@PathVariable Long id){
+        EmailDTO dto = new EmailDTO(emailService.getEmailById(id));
+        return ResponseEntity.ok(dto);
     }
 
 }
