@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class EmailService {
@@ -40,7 +41,7 @@ public class EmailService {
         }
 
     }
-    public Email getEmailById(Long id){
+    public Email getEmailById(UUID id){
         return emailRepository.findById(id).get();
     }
 }

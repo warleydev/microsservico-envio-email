@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping(value = "/emails")
 public class EmailController {
@@ -26,7 +28,7 @@ public class EmailController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<EmailDTO> getEmailById(@PathVariable Long id){
+    public ResponseEntity<EmailDTO> getEmailById(@PathVariable UUID id){
         EmailDTO dto = new EmailDTO(emailService.getEmailById(id));
         return ResponseEntity.ok(dto);
     }
